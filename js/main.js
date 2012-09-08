@@ -10,7 +10,7 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
     // ,data = [2,4,6, 10];
 
 
-  var svg = d3.select("#posession").append("svg")
+  var svg = d3.select("#possession").append("svg")
       .attr("class", "svg")
       .attr("width", width)
       .attr("height", height)
@@ -32,12 +32,16 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
   var groupExit = d3.transition(group.exit())
     .remove()
     
-  var pop = Popcorn("#mcfc");
+  pop = Popcorn("#mcfc");
+
+  var idx = 0
 
   groupEnter = groupEnter
     .append('a')
       .attr('xlink:href', function(d){return '#' + d.game_time})
-      .on('click', function(d){
+      .on('click', function(d,i){
+        // Resetting index count to the clicked position
+        idx = i
         pop.play(d.video_time_sec)
         d3.select('#footnotediv').attr('class', null)
       })
@@ -68,12 +72,10 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
   // ['pause', 'play', 'seeked', 'seeking', 'playing'].forEach(function(e){
   //   pop.on(e, function(a){Paused = this; console.log(e, this.video.currentTime)})
   // })
-  idx = 0
   pop.on('timeupdate', function(a){
-   // console.log('idx', idx, data[idx])
+
    if (data[idx] && data[idx].video_time_sec < this.video.currentTime) {
      var current_event = data[idx]
-     // console.log(idx,'passed', this.video.currentTime, current_event , data.length)
      d3.select('#footnotediv').attr('class', current_event.possession)
      var text = ""
      if (current_event.narration != "") {
@@ -81,8 +83,8 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
      };
      var element = (d3.selectAll('rect')[0][idx])
 
-     d3.select(element)
-      .style('stroke', 'gold')
+     //  Highlighting element while playing
+     d3.select(element).attr('class', 'g').transition().delay(5000).attr('class', current_event.possession)
 
      pop.footnote({
        start: current_event.video_time_sec + 1,

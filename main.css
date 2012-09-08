@@ -42,6 +42,11 @@ h1 {
   fill: red;
 }
 
+.svg .g{
+  fill: gold;
+}
+
+
 /*div {*/
 /*  font: 10px sans-serif;*/
 /*  background-color: steelblue;*/
