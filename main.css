@@ -2,21 +2,33 @@
   display: block;
   height: 50px;
   width: 874px;
-  margin-left: 60px;
+  margin-left: 55px;
   margin-right: 60px;
-  background-color: green;
+/*  background-color: green;*/
 }
 .svg rect {
   stroke: white;
 /*  fill: steelblue;*/
 }
+
 .s{
-  fill: grey;
+  background-color: grey;
 }
 .m{
-  fill: steelblue;
+  background-color: steelblue;
 }
 .q{
+  background-color: red;
+}
+
+
+.svg .s{
+  fill: grey;
+}
+.svg .m{
+  fill: steelblue;
+}
+.svg .q{
   fill: red;
 }
 

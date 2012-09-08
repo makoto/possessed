@@ -74,10 +74,10 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
    if (data.length > 0 && data[0].video_time_sec < this.video.currentTime) {
      var current_event = data.shift()
      console.log('passed', this.video.currentTime, current_event , data.length)
-     var text = current_event.possession
-     console.log('text', text)
+     d3.select('#footnotediv').attr('class', current_event.possession)
+     var text = ""
      if (current_event.narration != "") {
-       text = text + ":" + current_event.narration
+       text = text + current_event.narration
      };
 
      pop.footnote({
