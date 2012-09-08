@@ -63,11 +63,11 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
         var diff = d.video_time_sec - prev().video_time_sec
         return l(diff)
       })
-      .attr('height',20)
+      .attr('height',40)
       .attr("class",  function(d){return d.possession})
 
     groupEnter.append("circle")
-    .attr("cy", 19)
+    .attr("cy", 28.5)
     .attr("cx", function(d,i){
       return l(d.video_time_sec - (d3.min(secs) + 2.5))
     })
