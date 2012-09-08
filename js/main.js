@@ -36,7 +36,7 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
 
   groupEnter = groupEnter
     .append('a')
-      .attr('xlink:href', function(d){return '#' + d.video_time_sec})
+      .attr('xlink:href', function(d){return '#' + d.game_time})
       .on('click', function(d){
         pop.play(d.video_time_sec)
         d3.select('#footnotediv').attr('class', null)
