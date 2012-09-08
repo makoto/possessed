@@ -1,0 +1,9 @@
+#footnotediv{
+  display: block;
+  height: 50px;
+  background-color: yellow;
+}
+.svg rect {
+  stroke: white;
+  fill: steelblue;
+}
