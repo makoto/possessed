@@ -13,41 +13,41 @@
             })
             Data = data
 
-               // Create a popcorn instance by calling Popcorn("#id-of-my-video")
-               var pop = Popcorn("#mcfc");
+            // Create a popcorn instance by calling Popcorn("#id-of-my-video")
+            var pop = Popcorn("#mcfc");
 
-               pop.cue( 1, function() {
-                  //  Play from last 5 min of the game
-                   var start_time = (60 * 4) + 25
-                   this.play( start_time );
+            pop.cue( 1, function() {
+              //  Play from last 5 min of the game
+               var start_time = (60 * 4) + 25
+               this.play( start_time );
+            });
+
+            // Callback when paused
+            // , 'timeupdate'
+            // ['pause', 'play', 'seeked', 'seeking', 'playing'].forEach(function(e){
+            //   pop.on(e, function(a){Paused = this; console.log(e, this.video.currentTime)})
+            // })
+            pop.on('timeupdate', function(a){
+             if (data.length > 0 && data[0].video_time_sec < this.video.currentTime) {
+               var current_event = data.shift()
+               console.log('passed', this.video.currentTime, current_event , data.length)
+               var text = current_event.possession
+               console.log('text', text)
+               if (current_event.narration != "") {
+                 text = text + ":" + current_event.narration
+               };
+
+               pop.footnote({
+                 start: current_event.video_time_sec + 1,
+                 end: current_event.video_time_sec + 5 ,
+                 text: text,
+                 target: "footnotediv"
                });
+             }
+            })
 
-               // Callback when paused
-               // , 'timeupdate'
-               // ['pause', 'play', 'seeked', 'seeking', 'playing'].forEach(function(e){
-               //   pop.on(e, function(a){Paused = this; console.log(e, this.video.currentTime)})
-               // })
-               pop.on('timeupdate', function(a){
-                 if (data.length > 0 && data[0].video_time_sec < this.video.currentTime) {
-                   var current_event = data.shift()
-                   console.log('passed', this.video.currentTime, current_event , data.length)
-                   var text = current_event.possession
-                   console.log('text', text)
-                   if (current_event.narration != "") {
-                     text = text + ":" + current_event.narration
-                   };
-
-                   pop.footnote({
-                     start: current_event.video_time_sec + 1,
-                     end: current_event.video_time_sec + 5 ,
-                     text: text,
-                     target: "footnotediv"
-                   });
-                 }
-               })
-
-               // play the video right away
-               pop.play();
+            // play the video right away
+            pop.play();
           })
     </script>
   </head>
