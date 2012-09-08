@@ -1,4 +1,6 @@
 
+
+
 d3.csv("./data/every_five_seconds.csv", function(data) {
   data = data.map(function(row){
     row.video_time_sec = parseInt(row.video_time_sec)
@@ -36,30 +38,34 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
 
   var idx = 0
 
-  groupEnter = groupEnter
-    .append('a')
-      .attr('xlink:href', function(d){return '#' + d.game_time})
-      .on('click', function(d,i){
-        // Resetting index count to the clicked position
-        idx = i
-        pop.play(d.video_time_sec)
-        d3.select('#footnotediv').attr('class', null)
-      })
-  
-  groupEnter.append('rect')
-    .attr("y", 10)
-    .attr("x", function(d,i){
-      var prev = data[i - 1] || {video_time_sec:0}
-      return l(prev.video_time_sec - d3.min(secs))
-    })
-    .attr("width", function(d,i){
-      var prev = data[i - 1] || {video_time_sec:0}
-      var diff = d.video_time_sec - prev.video_time_sec
-      return l(diff)
-    })
-    .attr('height',20)
-    .attr("class",  function(d){return d.possession})
+  var draw = function(data){
+    groupEnter = groupEnter
+      .append('a')
+        .attr('xlink:href', function(d){return '#' + d.game_time})
+        .on('click', function(d,i){
+          // Resetting index count to the clicked position
+          idx = i
+          pop.play(d.video_time_sec)
+          d3.select('#footnotediv').attr('class', null)
+        })
 
+    groupEnter.append('rect')
+      .attr("y", 10)
+      .attr("x", function(d,i){
+        var prev = data[i - 1] || {video_time_sec:0}
+        return l(prev.video_time_sec - d3.min(secs))
+      })
+      .attr("width", function(d,i){
+        var prev = data[i - 1] || {video_time_sec:0}
+        var diff = d.video_time_sec - prev.video_time_sec
+        return l(diff)
+      })
+      .attr('height',20)
+      .attr("class",  function(d){return d.possession})
+    
+  }
+
+  draw(data)
 
   pop.cue( 1, function() {
     //  Play from last 5 min of the game
