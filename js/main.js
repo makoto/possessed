@@ -49,20 +49,37 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
           d3.select('#footnotediv').attr('class', null)
         })
 
+    var prev = function(d,i){
+      return data[i - 1] || {video_time_sec:0}
+    }
+
+
     groupEnter.append('rect')
       .attr("y", 10)
       .attr("x", function(d,i){
-        var prev = data[i - 1] || {video_time_sec:0}
-        return l(prev.video_time_sec - d3.min(secs))
+        return l(prev(d,i).video_time_sec - d3.min(secs))
       })
       .attr("width", function(d,i){
-        var prev = data[i - 1] || {video_time_sec:0}
-        var diff = d.video_time_sec - prev.video_time_sec
+        var diff = d.video_time_sec - prev().video_time_sec
         return l(diff)
       })
       .attr('height',20)
       .attr("class",  function(d){return d.possession})
+
+    groupEnter.append("circle")
+    .attr("cy", 19)
+    .attr("cx", function(d,i){
+      return l(d.video_time_sec - (d3.min(secs) + 2.5))
+    })
+    .attr("r", function(d){
+      var r = 0
+      if (d.narration != '') {r = 4};
+      return r;
+    })
+    .style('fill', 'white')
+      
     
+
   }
 
   draw(data)
