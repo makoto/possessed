@@ -16,7 +16,6 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
       .attr("height", height)
 
   var secs = _.pluck(data, 'video_time_sec')
-  var color = d3.scale.category10().domain(['s', 'm', 'q']).range(['grey', 'blue', 'red'])
   
   var l = d3.scale.linear()
       .domain([0, d3.max(secs) - d3.min(secs)])
@@ -37,26 +36,16 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
     .attr("y", 10)
     .attr("x", function(d,i){
       var prev = data[i - 1] || {video_time_sec:0}
-      // console.log(d.video_time_sec, prev.video_time_sec, d.video_time_sec - prev.video_time_sec)
       return l(prev.video_time_sec - d3.min(secs))
     })
     .attr("width", function(d,i){
       var prev = data[i - 1] || {video_time_sec:0}
-      // console.log(d.video_time_sec, prev.video_time_sec, d.video_time_sec - prev.video_time_sec)
       var diff = d.video_time_sec - prev.video_time_sec
       return l(diff)
     })
     .attr('height',20)
     .attr("class",  function(d){return d.possession})
 
-  // groupUpdate.select('rect')
-  //   .attr("y", function(d){return l(d)})
-  
-    
-  
-  
-  
-  // Create a popcorn instance by calling Popcorn("#id-of-my-video")
   var pop = Popcorn("#mcfc");
 
   pop.cue( 1, function() {
@@ -70,10 +59,12 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
   // ['pause', 'play', 'seeked', 'seeking', 'playing'].forEach(function(e){
   //   pop.on(e, function(a){Paused = this; console.log(e, this.video.currentTime)})
   // })
+  idx = 0
   pop.on('timeupdate', function(a){
-   if (data.length > 0 && data[0].video_time_sec < this.video.currentTime) {
-     var current_event = data.shift()
-     console.log('passed', this.video.currentTime, current_event , data.length)
+   console.log('idx', idx, data[idx])
+   if (data[idx] && data[idx].video_time_sec < this.video.currentTime) {
+     var current_event = data[idx]
+     console.log(idx,'passed', this.video.currentTime, current_event , data.length)
      d3.select('#footnotediv').attr('class', current_event.possession)
      var text = ""
      if (current_event.narration != "") {
@@ -86,6 +77,7 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
        text: text,
        target: "footnotediv"
      });
+    idx++
    }
   })
 
