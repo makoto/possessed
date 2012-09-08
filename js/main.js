@@ -31,6 +31,16 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
 
   var groupExit = d3.transition(group.exit())
     .remove()
+    
+  var pop = Popcorn("#mcfc");
+
+  groupEnter = groupEnter
+    .append('a')
+      .attr('xlink:href', function(d){return '#' + d.video_time_sec})
+      .on('click', function(d){
+        pop.play(d.video_time_sec)
+        d3.select('#footnotediv').attr('class', null)
+      })
   
   groupEnter.append('rect')
     .attr("y", 10)
@@ -46,7 +56,6 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
     .attr('height',20)
     .attr("class",  function(d){return d.possession})
 
-  var pop = Popcorn("#mcfc");
 
   pop.cue( 1, function() {
     //  Play from last 5 min of the game
@@ -61,10 +70,10 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
   // })
   idx = 0
   pop.on('timeupdate', function(a){
-   console.log('idx', idx, data[idx])
+   // console.log('idx', idx, data[idx])
    if (data[idx] && data[idx].video_time_sec < this.video.currentTime) {
      var current_event = data[idx]
-     console.log(idx,'passed', this.video.currentTime, current_event , data.length)
+     // console.log(idx,'passed', this.video.currentTime, current_event , data.length)
      d3.select('#footnotediv').attr('class', current_event.possession)
      var text = ""
      if (current_event.narration != "") {
