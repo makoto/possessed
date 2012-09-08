@@ -4,19 +4,23 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
     row.video_time_sec = parseInt(row.video_time_sec)
     return row
   })
-  Data = data
-  var width = 800
+  // Data = data
+  var width = 885
     ,height = 100
-    ,data = [2,4,6, 10];
+    // ,data = [2,4,6, 10];
+
 
   var svg = d3.select("#posession").append("svg")
       .attr("class", "svg")
       .attr("width", width)
       .attr("height", height)
+
+  var secs = _.pluck(data, 'video_time_sec')
+  var color = d3.scale.category10().domain(['s', 'm', 'q']).range(['grey', 'blue', 'red'])
   
   var l = d3.scale.linear()
-      .domain([0, d3.max(data)])
-      .range([0, width - 10]);
+      .domain([0, d3.max(secs) - d3.min(secs)])
+      .range([0, width]);
   
   var group = svg.selectAll(".group")
       .data(data, function(d){return d});
@@ -32,17 +36,18 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
   groupEnter.append('rect')
     .attr("y", 10)
     .attr("x", function(d,i){
-      var prev = data[i - 1] || 0
-      console.log(d, prev, d - prev)
-      return l(prev)
+      var prev = data[i - 1] || {video_time_sec:0}
+      // console.log(d.video_time_sec, prev.video_time_sec, d.video_time_sec - prev.video_time_sec)
+      return l(prev.video_time_sec - d3.min(secs))
     })
     .attr("width", function(d,i){
-      var prev = data[i - 1] || 0
-      var diff = d - prev
-      
+      var prev = data[i - 1] || {video_time_sec:0}
+      // console.log(d.video_time_sec, prev.video_time_sec, d.video_time_sec - prev.video_time_sec)
+      var diff = d.video_time_sec - prev.video_time_sec
       return l(diff)
     })
-    .attr("height", 10);
+    .attr('height',10)
+    .attr("class",  function(d){return d.possession})
 
   // groupUpdate.select('rect')
   //   .attr("y", function(d){return l(d)})

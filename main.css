@@ -1,12 +1,25 @@
 #footnotediv{
   display: block;
   height: 50px;
-  background-color: yellow;
+  width: 874px;
+  margin-left: 60px;
+  margin-right: 60px;
+  background-color: green;
 }
 .svg rect {
   stroke: white;
+/*  fill: steelblue;*/
+}
+.s{
+  fill: grey;
+}
+.m{
   fill: steelblue;
 }
+.q{
+  fill: red;
+}
+
 div {
   font: 10px sans-serif;
 /*  background-color: steelblue;*/
