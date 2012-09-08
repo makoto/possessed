@@ -70,6 +70,10 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
      if (current_event.narration != "") {
        text = text + current_event.narration
      };
+     var element = (d3.selectAll('rect')[0][idx])
+
+     d3.select(element)
+      .style('stroke', 'gold')
 
      pop.footnote({
        start: current_event.video_time_sec + 1,
