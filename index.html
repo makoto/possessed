@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="./js/popcorn-complete.min.js"></script>
+    <script src="./js/d3.min.js"></script>
+    <script>
+      // ensure the web page (DOM) has loaded
+      document.addEventListener("DOMContentLoaded", function () {
+
+         // Create a popcorn instance by calling Popcorn("#id-of-my-video")
+         var pop = Popcorn("#mcfc");
+
+         pop.exec( 1, function() {
+            //  Play from 3rd second
+             var start_time = (60 * 4) + 25
+             this.play( start_time );
+         });
+
+         // add a footnote at 2 seconds, and remove it at 6 seconds
+         pop.footnote({
+           start: 2,
+           end: 6,
+           text: "Pop!",
+           target: "footnotediv"
+         });
+         
+         // Callback when paused
+         // , 'timeupdate'
+         ['pause', 'play', 'seeked', 'seeking', 'playing'].forEach(function(e){
+           pop.on(e, function(a){Paused = this; console.log(e, this.video.currentTime)})
+         })
+
+         // play the video right away
+         pop.play();
+
+      }, false);
+    </script>
+  </head>
+  <body>
+    <video height="500" width="1000" id="mcfc" controls>
+      <source src="./data/mcfc_qpr.mp4">
+    </video>
+    <div id="footnotediv"></div>
+  </body>
+</html>
