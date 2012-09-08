@@ -46,7 +46,7 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
       var diff = d.video_time_sec - prev.video_time_sec
       return l(diff)
     })
-    .attr('height',10)
+    .attr('height',20)
     .attr("class",  function(d){return d.possession})
 
   // groupUpdate.select('rect')

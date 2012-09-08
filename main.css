@@ -4,13 +4,16 @@ body{
 .left{
   margin-left: 55px;
 }
-h1 { font-family: ‘Metrophobic’, Arial, serif; font-weight: 400; }
+h1 {
+  font-family: 'Lobster', cursive;
+}
 #footnotediv{
   display: block;
   height: 50px;
   width: 887px;
   margin-left: 55px;
   margin-right: 60px;
+  color: white;
 /*  background-color: green;*/
 }
 .svg rect {
