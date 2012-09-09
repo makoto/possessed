@@ -1,4 +1,4 @@
-video_time,video_time_sec,game_time,possession,narration,player
+video_time,video_time_sec,game_time,team,narration,player
 00:04:25,265,89:50,s,We're nearing Mancini Time,
 00:04:30,270,89:55,s,,
 00:04:35,275,90:00,m,"Balotelli twists and turns and shoots, but it's deflected wide by the superb Onuoha. Corner to City. Another corner to City. Another corner to City.",Balotelli
@@ -23,4 +23,4 @@ video_time,video_time_sec,game_time,possession,narration,player
 00:06:10,370,93:25,s,Sergio Aguero has won the Premier League title for Manchester City!,
 00:06:15,375,93:30,s,"Balotelli made a nuisance of himself on the edge of the area, the ball ran free on the edge of the area.",
 00:06:20,380,93:35,s,"Aguero burst on to it and as QPR defenders collapsed around him, he smashed it past Paddy Kenny from eight yards out! ",
-00:06:20,380,93:35,s,"The stadium erupts, Aguero whips off his shirt and the man engraving the trophy lets out a long sigh. Michael Thomas, eat your heart out.",,
+00:06:20,385,93:35,s,"The stadium erupts, Aguero whips off his shirt and the man engraving the trophy lets out a long sigh. Michael Thomas, eat your heart out.",,
