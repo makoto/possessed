@@ -1,6 +1,3 @@
-
-
-
 d3.csv("./data/every_five_seconds.csv", function(data) {
   data = data.map(function(row){
     row.video_time_sec = parseInt(row.video_time_sec)
@@ -9,8 +6,6 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
   // Data = data
   var width = 885
     ,height = 100
-    // ,data = [2,4,6, 10];
-
 
   var svg = d3.select("#possession").append("svg")
       .attr("class", "svg")
@@ -77,8 +72,6 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
       return r;
     })
     .style('fill', 'white')
-      
-    
 
   }
 
@@ -100,25 +93,16 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
    if (data[idx] && data[idx].video_time_sec < this.video.currentTime) {
      var current_event = data[idx]
      d3.select('#footnotediv').attr('class', current_event.possession)
-     var text = ""
      if (current_event.narration != "") {
-       text = text + current_event.narration
+        d3.select('#footnotediv').text(current_event.narration)
      };
+
      var element = (d3.selectAll('rect')[0][idx])
 
      //  Highlighting element while playing
      d3.select(element).attr('class', 'g').transition().delay(5000).attr('class', current_event.possession)
 
-     pop.footnote({
-       start: current_event.video_time_sec + 1,
-       end: current_event.video_time_sec + 5 ,
-       text: text,
-       target: "footnotediv"
-     });
     idx++
    }
   })
-
-  // play the video right away
-  // pop.play();
 })
