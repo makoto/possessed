@@ -1,19 +1,19 @@
 # Possessed!!
 
-Hack Idea for [Sports Tech Hack Day](https://www.hackerleague.org/hackathons/sportstech-hack-day)
-
-
-
 ## Summary
 
-- Display stats (possessions, players) of last 5 min of 2012 Mar 13th Man City vs QPR Premier League Winning Moment
-- Clicking a stat figure plays back to the exact moment.
+Hack Idea for [Sports Tech Hack Day](https://www.hackerleague.org/hackathons/sportstech-hack-day)
+
+This is equivalent of what iTune did to Music for Sports archive.
+Rather than viewing entire 90 minutes of game, you can cherry pick your favorite team or player's playing moment, and skip time wasting pauses.
+
+- Display stats (possessions, players, comments) of last 5 min of 2012 Mar 13th Man City vs QPR Premier League Winning Moment
+- Clicking black time boxes plays back to the exact moment.
+- Clicking Team color or Player Photo skip through to play only the moment you want to watch.
+
+In future, you can add any other performance matrix (eg: all short passes, long dribbles, all red card moments). This will be useful not only for football industry professionals (journalists, coaches, etc), but all other football fans who want to cherry pick types of plays you like.
 
 The name came from my attempt to visualising the "game possession". However, I played youtube video more than 100 times while working on this, and I was literally "like a man possessed"
-
-## Todo
-
-- Skip for only the key stats you are interested (eg: Man city possessed, Mario, etc)
 
 ## Data
 
