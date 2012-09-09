@@ -1,0 +1,62 @@
+body{
+  background: white url('image/pagebg_long.jpg') top center no-repeat
+}
+.left{
+  margin-left: 55px;
+}
+h1 {
+  font-family: 'Lobster', cursive;
+}
+#footnotediv{
+  display: block;
+  height: 60px;
+  width: 887px;
+  margin-left: 55px;
+  margin-right: 60px;
+  color: white;
+/*  background-color: green;*/
+}
+.svg rect {
+  stroke: white;
+/*  fill: steelblue;*/
+}
+
+.s{
+  background-color: grey;
+}
+.m{
+  background-color: steelblue;
+}
+.q{
+  background-color: red;
+}
+
+
+.svg .s{
+  fill: grey;
+}
+.svg .m{
+  fill: steelblue;
+}
+.svg .q{
+  fill: red;
+}
+
+.svg .g{
+  fill: gold;
+}
+
+
+/*div {*/
+/*  font: 10px sans-serif;*/
+/*  background-color: steelblue;*/
+/*  text-align: right;*/
+/*  padding: 3px;*/
+/*  margin: 1px;*/
+/*  color: white;*/
+/*}*/
+span{
+  padding: 3px;
+  margin: 1px;  
+}
+
