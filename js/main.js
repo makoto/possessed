@@ -35,16 +35,6 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
   var idx = 0
 
   var draw = function(data){
-    groupEnter = groupEnter
-      .append('a')
-        .attr('xlink:href', function(d){return '#' + d.game_time})
-        .on('click', function(d,i){
-          // Resetting index count to the clicked position
-          idx = i
-          pop.play(d.video_time_sec)
-          d3.select('#footnotediv').attr('class', null)
-        })
-
     var prev = function(d,i){
       return data[i - 1] || {video_time_sec:0}
     }
@@ -55,17 +45,42 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
     console.log('unique players', unique_players)
     var color = d3.scale.category10().domain(unique_players).range(['grey', 'yellow', 'green', 'purple', 'pink'])
 
-    groupEnter.append('rect')
-      .attr("y", 10)
-      .attr("x", function(d,i){
-        return l(prev(d,i).video_time_sec - d3.min(secs))
-      })
-      .attr("width", function(d,i){
-        var diff = d.video_time_sec - prev().video_time_sec
-        return l(diff)
-      })
-      .attr('height',40)
-      .attr("class",  function(d){return d.possession})
+
+    groupEnter
+      .append('rect')
+        .attr('class', function(d){return "indicator " + d.possession})
+        .attr("y", 2)
+        .attr("x", function(d,i){
+          return l(prev(d,i).video_time_sec - d3.min(secs))
+        })
+        .attr("width", function(d,i){
+          var diff = d.video_time_sec - prev().video_time_sec
+          return l(diff)
+        })
+        .attr('height',10)
+        // .attr("class",  function(d){return d.possession})
+
+
+    groupEnter
+      .append('a')
+        .attr('xlink:href', function(d){return '#' + d.game_time})
+        .on('click', function(d,i){
+          idx = i
+          pop.play(d.video_time_sec)
+          d3.select('#footnotediv').attr('class', null)
+        })
+      .append('rect')
+        .attr('class', 'team')
+        .attr("y", 10)
+        .attr("x", function(d,i){
+          return l(prev(d,i).video_time_sec - d3.min(secs))
+        })
+        .attr("width", function(d,i){
+          var diff = d.video_time_sec - prev().video_time_sec
+          return l(diff)
+        })
+        .attr('height',40)
+        .attr("class",  function(d){return d.possession})
 
     groupEnter.append("circle")
     .attr("cy", 28.5)
@@ -113,11 +128,11 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
       .attr('class', current_event.possession)
       .text(current_event.narration)
 
-
-     var element = (d3.selectAll('rect')[0][idx])
-
+     Idx = idx
+     var element = (d3.selectAll('.indicator')[0][idx])
+     // console.log('element', element)
      //  Highlighting element while playing
-     d3.select(element).attr('class', 'g').transition().delay(5000).attr('class', current_event.possession)
+     d3.select(element).attr('class', 'indicator g').transition().delay(5000).attr('class', "indicator " + current_event.possession)
 
     idx++
    }
