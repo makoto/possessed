@@ -3,6 +3,8 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
     row.video_time_sec = parseInt(row.video_time_sec)
     return row
   })
+  
+  
   // Data = data
   var width = 885
     ,height = 100
@@ -32,7 +34,10 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
     
   pop = Popcorn("#mcfc");
 
-  var idx = 0
+  State = {
+    idx:0,
+    attr:null
+  }
 
   var draw = function(data){
     var prev = function(d,i){
@@ -65,7 +70,8 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
       .append('a')
         .attr('xlink:href', function(d){return '#' + d.game_time})
         .on('click', function(d,i){
-          idx = i
+          State.idx = i
+          State.attr = 'team'
           pop.play(d.video_time_sec)
           d3.select('#footnotediv').attr('class', null)
         })
@@ -94,7 +100,16 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
     })
     .style('fill', 'white')
 
-    groupEnter.append("svg:image")
+    groupEnter
+      .append('a')
+        .attr('xlink:href', function(d){return '#' + d.game_time})
+        .on('click', function(d,i){
+          State.idx = i
+          State.attr = 'player'
+          pop.play(d.video_time_sec)
+          d3.select('#footnotediv').attr('class', null)
+        })
+      .append("svg:image")
         .attr("y", 60)
         .attr("x", function(d,i){
           return l(prev(d,i).video_time_sec - d3.min(secs))
@@ -121,20 +136,18 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
   //   pop.on(e, function(a){Paused = this; console.log(e, this.video.currentTime)})
   // })
   pop.on('timeupdate', function(a){
-
-   if (data[idx] && data[idx].video_time_sec < this.video.currentTime) {
-     var current_event = data[idx]
+   if (data[State.idx] && data[State.idx].video_time_sec < this.video.currentTime) {
+     var current_event = data[State.idx]
      d3.select('#footnotediv')
       .attr('class', current_event.possession)
       .text(current_event.narration)
 
-     Idx = idx
-     var element = (d3.selectAll('.indicator')[0][idx])
+     var element = (d3.selectAll('.indicator')[0][State.idx])
      // console.log('element', element)
      //  Highlighting element while playing
      d3.select(element).attr('class', 'indicator g').transition().delay(5000).attr('class', "indicator " + current_event.possession)
 
-    idx++
+    State.idx++
    }
   })
 })
