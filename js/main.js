@@ -109,10 +109,10 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
 
    if (data[idx] && data[idx].video_time_sec < this.video.currentTime) {
      var current_event = data[idx]
-     d3.select('#footnotediv').attr('class', current_event.possession)
-     if (current_event.narration != "") {
-        d3.select('#footnotediv').text(current_event.narration)
-     };
+     d3.select('#footnotediv')
+      .attr('class', current_event.possession)
+      .text(current_event.narration)
+
 
      var element = (d3.selectAll('rect')[0][idx])
 
