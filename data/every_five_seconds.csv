@@ -1,26 +1,26 @@
-video_time,video_time_sec,game_time,team,narration,player
-00:04:25,265,89:50,s,We're nearing Mancini Time,
-00:04:30,270,89:55,s,,
-00:04:35,275,90:00,m,"Balotelli twists and turns and shoots, but it's deflected wide by the superb Onuoha. Corner to City. Another corner to City. Another corner to City.",Balotelli
-00:04:40,280,90:05,s,,
-00:04:45,285,90:10,m,,Aguero
-00:04:50,290,90:50,m,,Silva
-00:04:55,295,90:55,m,,Silva
-00:05:00,300,91:00,s,"From the third corner, Balotelli meets it from six yards out and Kenny wonderfully claws it out. He then catches the second corner. He's more than made up for his error that led to Zabaleta's goal. Again it looked like he had to score. There will be five minutes more of this. City need two goals.",
-00:05:05,305,91:05,s,Two minutes. Manchester United have done their bit: they've won 1-0,
-00:05:10,310,91:10,m,"IT'S ON! Manchester City 2-2 QPR (Dzeko, 90 min+2)",Dzeko
-00:05:15,315,91:15,s,Edin Dzeko powers a header past Kenny from close range from Silva's corner. Manchester City need one goal to win the title. They have three minutes.,
-00:05:20,320,91:20,s,,
-00:05:25,325,92:40,s,,
-00:05:30,330,92:45,s,,
-00:05:35,335,92:50,s,,
-00:05:40,340,92:55,q,,Campbell
-00:05:45,345,93:00,m,,Aguero
-00:05:50,350,93:05,m,,Aguero
-00:05:55,355,93:10,m,,Aguero
-00:06:00,360,93:15,m,,Aguero
-00:06:05,365,93:20,s,"GOAL!!!!!! Manchester City 3-2 QPR (Aguero, 90 min+4)",
-00:06:10,370,93:25,s,Sergio Aguero has won the Premier League title for Manchester City!,
-00:06:15,375,93:30,s,"Balotelli made a nuisance of himself on the edge of the area, the ball ran free on the edge of the area.",
-00:06:20,380,93:35,s,"Aguero burst on to it and as QPR defenders collapsed around him, he smashed it past Paddy Kenny from eight yards out! ",
-00:06:20,385,93:35,s,"The stadium erupts, Aguero whips off his shirt and the man engraving the trophy lets out a long sigh. Michael Thomas, eat your heart out.",,
+all,video_time,video_time_sec,game_time,team,narration,player
+yes,00:04:25,265,89:50,s,We're nearing Mancini Time,
+yes,00:04:30,270,89:55,s,,
+yes,00:04:35,275,90:00,m,"Balotelli twists and turns and shoots, but it's deflected wide by the superb Onuoha. Corner to City. Another corner to City. Another corner to City.",Balotelli
+yes,00:04:40,280,90:05,s,,
+yes,00:04:45,285,90:10,m,,Aguero
+yes,00:04:50,290,90:50,m,,Silva
+yes,00:04:55,295,90:55,m,,Silva
+yes,00:05:00,300,91:00,s,"From the third corner, Balotelli meets it from six yards out and Kenny wonderfully claws it out. He then catches the second corner. He's more than made up for his error that led to Zabaleta's goal. Again it looked like he had to score. There will be five minutes more of this. City need two goals.",
+yes,00:05:05,305,91:05,s,Two minutes. Manchester United have done their bit: they've won 1-0,
+yes,00:05:10,310,91:10,m,"IT'S ON! Manchester City 2-2 QPR (Dzeko, 90 min+2)",Dzeko
+yes,00:05:15,315,91:15,s,Edin Dzeko powers a header past Kenny from close range from Silva's corner. Manchester City need one goal to win the title. They have three minutes.,
+yes,00:05:20,320,91:20,s,,
+yes,00:05:25,325,92:40,s,,
+yes,00:05:30,330,92:45,s,,
+yes,00:05:35,335,92:50,s,,
+yes,00:05:40,340,92:55,q,,Campbell
+yes,00:05:45,345,93:00,m,,Aguero
+yes,00:05:50,350,93:05,m,,Aguero
+yes,00:05:55,355,93:10,m,,Aguero
+yes,00:06:00,360,93:15,m,,Aguero
+yes,00:06:05,365,93:20,s,"GOAL!!!!!! Manchester City 3-2 QPR (Aguero, 90 min+4)",
+yes,00:06:10,370,93:25,s,Sergio Aguero has won the Premier League title for Manchester City!,
+yes,00:06:15,375,93:30,s,"Balotelli made a nuisance of himself on the edge of the area, the ball ran free on the edge of the area.",
+yes,00:06:20,380,93:35,s,"Aguero burst on to it and as QPR defenders collapsed around him, he smashed it past Paddy Kenny from eight yards out! ",
+yes,00:06:20,385,93:35,s,"The stadium erupts, Aguero whips off his shirt and the man engraving the trophy lets out a long sigh. Michael Thomas, eat your heart out.",,
