@@ -7,8 +7,8 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
   
   // Data = data
   var width = 885
-    ,height = 100
-    ,image_size = 38
+    ,height = 200
+    ,image_size = 40
 
   var svg = d3.select("#possession").append("svg")
       .attr("class", "svg")
@@ -64,8 +64,17 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
 
 
     groupEnter
+      .append('a')
+        .attr('xlink:href', function(d){return '#' + d.game_time})
+        .on('click', function(d,i){
+          State.idx = i
+          State.attr = 'all'
+          State.val  = d['all']
+          pop.play(d.video_time_sec)
+          d3.select('#footnotediv').attr('class', null)
+        })
       .append('rect')
-        .attr('class', function(d){return "indicator " + d.team})
+        .attr('class', function(d){return "indicator "})
         .attr("y", 2)
         .attr("x", function(d,i){
           return l(prev(d,i).video_time_sec - d3.min(secs))
@@ -74,7 +83,7 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
           var diff = d.video_time_sec - prev().video_time_sec
           return l(diff)
         })
-        .attr('height',15)
+        .attr('height',40)
         // .attr("class",  function(d){return d.possession})
 
     groupEnter
@@ -103,7 +112,7 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
         })
       .append('rect')
         .attr('class', 'team')
-        .attr("y", 20)
+        .attr("y", 40)
         .attr("x", function(d,i){
           return l(prev(d,i).video_time_sec - d3.min(secs))
         })
@@ -132,11 +141,12 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
         .on('click', function(d,i){
           State.idx = i
           State.attr = 'player'
+          State.val  = d['player']
           pop.play(d.video_time_sec)
           d3.select('#footnotediv').attr('class', null)
         })
       .append("svg:image")
-        .attr("y", 60)
+        .attr("y", 80)
         .attr("x", function(d,i){
           return l(prev(d,i).video_time_sec - d3.min(secs))
         })
@@ -168,14 +178,18 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
    var element = (d3.selectAll('.indicator')[0][State.idx])
    //  Highlighting element while playing
    
-   d3.selectAll('.indicator').attr('class', function(d){return "indicator " + d.team})
+   d3.selectAll('.indicator').attr('class', function(d){return "indicator "})
    d3.select(element).attr('class', 'indicator g')
 
    var current = data[State.idx]
 
    // if (data[State.idx].video_time_sec < this.video.currentTime) {
-     console.log('timeupdate', State.idx, data[State.idx].video_time_sec < this.video.currentTime, this.video.currentTime)
+     // console.log('timeupdate', State.idx, data[State.idx].video_time_sec < this.video.currentTime, this.video.currentTime)
    // };
+   d3.select('#footnotediv')
+    .attr('class', function(d){ return current.team })
+    .text(current.narration)
+   
 
    if (current && current.video_time_sec < this.video.currentTime) {
    //   var now = State.idx
@@ -196,17 +210,14 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
    //     State.idx++
    //   };
 
-     d3.select('#footnotediv')
-      .attr('class', current.team)
-      .text(current.narration)
 
      // State.idx++
      var next = data[State.idx + 1]
    
      if (State.val != next[State.attr]) {
-       console.log('mismatch', current.video_time_sec)
+       console.log('mismatch', State.val ,next[State.attr])
        while(next && State.val != next[State.attr]){
-         console.log('Incrementing ', State.idx, State.val, current[State.attr], next[State.attr])
+         console.log('Incrementing ', State.attr, State.val,State.idx, State.val, current[State.attr], next[State.attr])
          State.idx++
          var next = data[State.idx]
        }
