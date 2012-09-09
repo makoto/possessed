@@ -7,7 +7,7 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
   
   // Data = data
   var width = 885
-    ,height = 200
+    ,height = 120
     ,image_size = 40
 
   var svg = d3.select("#possession").append("svg")
