@@ -6,6 +6,7 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
   // Data = data
   var width = 885
     ,height = 100
+    ,image_size = 38
 
   var svg = d3.select("#possession").append("svg")
       .attr("class", "svg")
@@ -48,6 +49,11 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
       return data[i - 1] || {video_time_sec:0}
     }
 
+    var players = _.pluck(data, 'player')
+    //  Making sure that blank comes first so that I can assign grey
+    var unique_players = _.uniq([""].concat(players))
+    console.log('unique players', unique_players)
+    var color = d3.scale.category10().domain(unique_players).range(['grey', 'yellow', 'green', 'purple', 'pink'])
 
     groupEnter.append('rect')
       .attr("y", 10)
@@ -73,6 +79,17 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
     })
     .style('fill', 'white')
 
+    groupEnter.append("svg:image")
+        .attr("y", 60)
+        .attr("x", function(d,i){
+          return l(prev(d,i).video_time_sec - d3.min(secs))
+        })
+        .attr("width", image_size) 
+        .attr("height", image_size)
+        .attr("xlink:href",function(d){
+          var name = d.player
+          return 'image/' + (d.player || 'blank') + '.png';
+        }) 
   }
 
   draw(data)
