@@ -1,13 +1,15 @@
-# Possessed
+# Possessed!!
 
 Hack Idea for [Sports Tech Hack Day](https://www.hackerleague.org/hackathons/sportstech-hack-day)
 
-<iframe width="560" height="315" src="http://www.youtube.com/embed/L160YCp1v6I" frameborder="0" allowfullscreen></iframe>
+
 
 ## Summary
 
 - Display stats (possessions, players) of last 5 min of 2012 Mar 13th Man City vs QPR Premier League Winning Moment
 - Clicking a stat figure plays back to the exact moment.
+
+The name came from my attempt to visualising the "game possession". However, I played youtube video more than 100 times while working on this, and I was literally "like a man possessed"
 
 ## Todo
 
