@@ -81,9 +81,13 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
       .append('text')
         .attr("y", 15)
         .attr("x", function(d,i){
-          return l(prev(d,i).video_time_sec - d3.min(secs))
+          return l(prev(d,i).video_time_sec - (d3.min(secs) - 0.5))
         })
-        .text(function(d,i){return i + ''})
+        .text(function(d,i){return   d.game_time})
+        .attr('fill', 'white')
+        .attr('font-size', '11px')
+        // .attr("dy", ".35em")
+        // .attr("text-anchor", "middle")
 
 
 
