@@ -43,7 +43,9 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
     }[name]
   }
     
-  pop = Popcorn("#mcfc");
+  // pop = Popcorn("#mcfc");
+  var pop = Popcorn.youtube( "#mcfc", "http://www.youtube.com/watch?v=L160YCp1v6I");
+  
 
   State = {
     idx:0,
@@ -172,7 +174,9 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
   //   pop.on(e, function(a){Paused = this; console.log(e, this.video.currentTime)})
   // })
   pop.on('timeupdate', function(a){
-   if (this.video.currentTime > 385) {
+   var time = this.currentTime()
+   console.log('timeupdate', time)
+   if (time > 385) {
      pop.pause()
    };
    var element = (d3.selectAll('.indicator')[0][State.idx])
@@ -191,7 +195,7 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
     .text(current.narration)
    
 
-   if (current && current.video_time_sec < this.video.currentTime) {
+   if (current && current.video_time_sec < time) {
    //   var now = State.idx
    //   var now_event = function(){return data[now]}
    //   // var current_event = function(){return data[State.idx]}
@@ -223,6 +227,7 @@ d3.csv("./data/every_five_seconds.csv", function(data) {
        }
        console.log('Skipping ', State.idx)
        if (next) {
+         console.log('aaaa')
          pop.play(next.video_time_sec)
        }else{
          pop.pause()
